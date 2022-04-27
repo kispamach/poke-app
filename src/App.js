@@ -20,7 +20,7 @@ function App() {
     Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then(
       (response)=> {
         setPokemon({
-          name: pokemonName, 
+          name: response.data.name, 
           species: response.data.species.name, 
           img: response.data.sprites.front_default, 
           hp: response.data.stats[0].base_stat,
@@ -33,15 +33,18 @@ function App() {
     )
   }
 
+  const inputLower = (event) => {
+    event.target.value = event.target.value.toLowerCase()
+    setPokemonName(event.target.value)
+  }
+
   return (
     <div className="App">
       <div className='TitleSection'>
         <h1>Pokemon Stats</h1>
         <input 
           type="text" 
-          onChange={(event) => {
-            setPokemonName(event.target.value)
-          }}/>
+          onChange={inputLower}/>
         <button onClick={searchPokemon}>Search Pokemon</button>
       </div>
       <div className='DisplaySection'>
@@ -49,7 +52,7 @@ function App() {
         <h1> Please choose a Pokemon</h1>
         ) : (
           <>
-            <h1>{pokemon.name}</h1>
+            <h1 className='name'>{pokemon.name}</h1>
             <img src={pokemon.img}/>
             <h3>Species: {pokemon.species}</h3>
             <h3>Type: {pokemon.type}</h3>

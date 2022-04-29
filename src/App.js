@@ -22,7 +22,7 @@ function App() {
         setPokemon({
           name: response.data.name, 
           species: response.data.species.name, 
-          img: response.data.sprites.front_default, 
+          img: response.data.sprites.other.dream_world.front_default, 
           hp: response.data.stats[0].base_stat,
           attack: response.data.stats[1].base_stat,
           defense: response.data.stats[2].base_stat,
@@ -54,11 +54,13 @@ function App() {
           <>
             <h1 className='name'>{pokemon.name}</h1>
             <img src={pokemon.img}/>
-            <h3>Species: {pokemon.species}</h3>
-            <h3>Type: {pokemon.type}</h3>
-            <h4>Hp: {pokemon.hp}</h4>
-            <h4>Attack: {pokemon.attack}</h4>
-            <h4>Defense: {pokemon.defense}</h4>
+            <div className="stat">
+              <h3>Species: {pokemon.species}</h3>
+              <h3>Type: {pokemon.type}</h3>
+              <h4>Hp: {pokemon.hp}</h4>
+              <h4>Attack: {pokemon.attack}</h4>
+              <h4>Defense: {pokemon.defense}</h4>
+            </div>
           </>
         )}
       </div>
